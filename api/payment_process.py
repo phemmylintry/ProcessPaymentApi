@@ -1,6 +1,5 @@
 from flask import Flask, abort, Response
 from decimal import Decimal
-from payment_card_identifier import CardIdentifier
 
 import datetime
 import json

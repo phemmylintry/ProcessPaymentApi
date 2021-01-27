@@ -13,7 +13,10 @@ parser.add_argument("ExpirationDate", type=str, help="Input expiration date on c
 parser.add_argument("SecurityCode", type=str)
 parser.add_argument("Amount", type=int, required=True)
 
+class Hello(Resource):
 
+    def get(self):
+        return {"message" : "Welcome to Process Payment Gateway"}
 class ProcessPaymentResource(Resource):
     
     def post(self):
@@ -45,7 +48,8 @@ class ProcessPaymentResource(Resource):
             return validate
 
 
-api.add_resource(ProcessPaymentResource, '/')
+api.add_resource(Hello, '/')
+api.add_resource(ProcessPaymentResource, '/processpayment')
 
 if __name__ == '__main__':
     app.run(debug=True)
