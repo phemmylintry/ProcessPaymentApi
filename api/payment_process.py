@@ -106,7 +106,7 @@ class Validate:
             }, 400
         
         if self.Amount:
-            if self.Amount < 0:
+            if self.Amount <= 0:
                 return {
                     "status" : "Failed",
                     "message" : "Invalid Amount"
