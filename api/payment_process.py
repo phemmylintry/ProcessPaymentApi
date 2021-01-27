@@ -63,29 +63,35 @@ class Validate:
         
         
         if self.CardHolder:
-            if type(self.CardHolder) is not str:
+            if self.CardHolder == "":
                 return {
                     "status" : "Failed",
-                    "message" : "Invalid Card Holder name"
+                    "message" : "Please Input a name"
                 }, 400
         else:
             return {
                 "status" : "Failed",
-                "message" : "Invalid Card Holder name"
+                "message" : "Please Input a name"
             }, 400
         
         if self.ExpirationDate:
             try:
                 date = datetime.datetime.strptime(self.ExpirationDate, "%Y/%m").date()
+                if date < datetime.date.today():
+                    return {
+                        "status" : "Failed",
+                        "message" : "This credit card has expired"
+                    }, 400
+
             except ValueError:
                 return {
                     "status" : "Failed",
-                    "message" : "Invalid Date"
+                    "message" : "Invalid Expiration Date"
                 }, 400
         else:
             return {
                 "status" : "Failed",
-                "message" : "Invalid Date"
+                "message" : "Invalid Expiration Date"
             }, 400
         
         if self.SecurityCode:
