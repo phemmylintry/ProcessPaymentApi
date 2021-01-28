@@ -1,11 +1,26 @@
 from flask import Flask, abort
 from flask_restful import Resource, Api, reqparse
+from flask_swagger_ui import get_swaggerui_blueprint
 
 from api.payment_process import Validate
 from api.payment_gateway import PremiumPaymentGateway, CheapPaymentGateway, ExpensivePaymentGateway
 
 app = Flask(__name__)
 api = Api(app)
+
+
+SWAGGER_URL = ''
+API_URL = '/static/swagger.json'
+SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': "Process Payment Gateway"
+    }
+)
+
+app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
+
 
 parser = reqparse.RequestParser()
 parser.add_argument("CreditCardNumber", type=str, help="Please input correct card number", required=True)
@@ -50,7 +65,7 @@ class ProcessPaymentResource(Resource):
             return validate
 
 
-api.add_resource(Hello, '/')
+api.add_resource(Hello, '/home')
 api.add_resource(ProcessPaymentResource, '/processpayment')
 
 

@@ -1,0 +1,76 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "An API to process payments with different payment gateways",
+        "version": "1.0.0",
+        "title": "Process Payment Gateway API",
+        "contact": {
+            "email": "phemmylintry@gmail.com"
+        }
+    },
+    "servers": [
+        {
+          "url": "/"
+        }
+    ],
+    "paths": {
+        "/home": {
+            "get": {
+                "tags": [
+                    "Home"
+                ],
+                "summary": "Welcome Message",
+                "responses": {
+                    "200": {"description" : "OK"},
+                    "400": {"description" : "Bad Request"}
+                }
+            }
+        },
+        "/processpayment": {
+            "post": {
+                "tags": [
+                    "Process Payment"
+                ],
+                "summary" : "process payment with different gateways",
+                "requestBody" : {
+                    "desciption" : "process payment",
+                    "required" : true,
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "CreditCardNumber" : {
+                                        "type" : "string",
+                                        "example" : "5110073926575583"
+                                    },
+                                    "CardHolder" : {
+                                        "type" : "string",
+                                        "example" : "John Doe"
+                                    },
+                                    "ExpirationDate" : {
+                                        "type" : "string",
+                                        "example" : "2022/11"
+                                    },
+                                    "SecurityCode" : {
+                                        "type" : "string",
+                                        "example" : "123"
+                                    },
+                                    "Amount" : {
+                                        "type" : "int",
+                                        "example" : 900
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "200": { "description": "OK"},
+                    "400": { "description": "Bad Request"}
+                }
+                
+            }
+        }
+    }
+}
