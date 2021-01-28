@@ -10,7 +10,7 @@ class PremiumPaymentGateway:
 
     def process_premium(self):
         return {
-            "status" : "Payment is processed through P",
+            "status" : "Payment is processed through Premium Payment Gateway",
         }, 200
 
 class CheapPaymentGateway:
@@ -20,7 +20,7 @@ class CheapPaymentGateway:
     
     def process_cheap(self):
         return {
-            "status" : "Payment is processed through C",
+            "status" : "Payment is processed through Cheap Payment Gateway",
         }, 200
 
 class ExpensivePaymentGateway:
@@ -29,5 +29,5 @@ class ExpensivePaymentGateway:
     
     def process_expensive(self):
         return {
-            "status" : "Payment is processed through E",
+            "status" : "Payment is processed through Expensive Payment Gateway",
         }, 200
