@@ -17,7 +17,7 @@ parser.add_argument("Amount", type=int, required=True)
 class Hello(Resource):
 
     def get(self):
-        return {"message" : "Welcome to Process Payment Gateway"}
+        return {"message" : "Welcome to Process Payment Gateway. Make requests to /processpayment endpoint"}
 
 class ProcessPaymentResource(Resource):
 
@@ -50,7 +50,7 @@ class ProcessPaymentResource(Resource):
             return validate
 
 
-api.add_resource(Hello, '/hello')
+api.add_resource(Hello, '/')
 api.add_resource(ProcessPaymentResource, '/processpayment')
 
 
